@@ -1,0 +1,49 @@
+url : api/Login
+
+method : post
+
+
+auth : none
+
+
+body {
+    'email' : required , string [the user email or password],
+    'password' : required , min : 8
+}
+
+
+--------------------------------------------------------------
+response 
+    code (422) 
+
+    [invaild data]
+    
+    {
+        "message": "The email field is required. (and 1 more error)",
+        "errors": {
+            "email": [
+                "The email field is required."
+            ],
+            "password": [
+                "The password field is required."
+            ]
+        }
+    }
+    _________________________________________________
+    code (403)
+    
+    [wrong email or password]
+
+    {
+        "success": false
+    }
+    _________________________________________________
+    code (200)
+    
+    [all ok]
+
+    {
+        "success": true,
+        "message": "login completed",
+        "token": "4|WLpJffnc6qyVpV129JGISqkIQEoGA2ZCsi8SGKvw"
+    }

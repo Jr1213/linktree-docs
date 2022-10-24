@@ -1,0 +1,48 @@
+url : api/Auth
+
+method : post 
+
+auth : none 
+
+body {
+    name : string , required
+    email : email , required , not used before
+    phone , required , not used before
+    password : string , min 8  char 
+    password_confirmation : must match the password
+}
+
+---------------------------------------------
+response : 
+
+    code (422) -> invaild data 
+    
+    {
+        "message": "The name field is required. (and 3 more errors)",
+        "errors": {
+            "name": [
+                "The name field is required."
+            ],
+            "email": [
+                "The email field is required."
+            ],
+            "phone": [
+                "The phone field is required."
+            ],
+            "password": [
+                "The password field is required."
+            ]
+        }
+    }
+    _________________________________________________
+    code (400) -> excption
+
+    _________________________________________________
+    code (201) -> all ok  
+
+    {
+        "success": true,
+        "message": "user has been created",
+        "token": "3|7s59mLE5FqCjbQ8LtwiBgpGrnNqic9Ev0PkcmgNC"
+    }
+
